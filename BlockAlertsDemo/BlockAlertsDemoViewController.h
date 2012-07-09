@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BlockAlertsDemoViewController : UIViewController <UITextFieldDelegate>
+@interface BlockAlertsDemoViewController : UIViewController <UITextFieldDelegate> {
+    NSMutableArray *sharedAlertViews;
+}
 
 - (IBAction)showAlert:(id)sender;
 - (IBAction)showActionSheet:(id)sender;

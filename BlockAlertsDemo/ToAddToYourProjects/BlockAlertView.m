@@ -42,6 +42,8 @@ static UIFont *buttonFont = nil;
 
 - (id)initWithTitle:(NSString *)title message:(NSString *)message 
 {
+    sharedAlertViews = [[BlockAlertDataStructure sharedBlockAlertDataStructure] alertViews];
+    
     if ((self = [super init]))
     {
         UIWindow *parentView = [BlockBackground sharedInstance];
@@ -138,7 +140,13 @@ static UIFont *buttonFont = nil;
     [self addButtonWithTitle:title color:@"red" block:block];
 }
 
-- (void)show
+-(void)show 
+{
+    if (sharedAlertViews.count == 1)
+        [self process];
+}
+
+- (void)process
 {
     BOOL isSecondButton = NO;
     NSUInteger index = 0;
@@ -328,6 +336,11 @@ static UIFont *buttonFont = nil;
                                                   [[BlockBackground sharedInstance] removeView:_view];
                                                   [_view release]; _view = nil;
                                                   [self autorelease];
+                                                  if (sharedAlertViews.count >= 1) 
+                                                  {
+                                                      BlockAlertView *alert = [sharedAlertViews objectAtIndex:0];
+                                                      [alert process];
+                                                  }
                                               }];
                          }];
     }
@@ -337,6 +350,8 @@ static UIFont *buttonFont = nil;
         [_view release]; _view = nil;
         [self autorelease];
     }
+    
+    [sharedAlertViews removeObjectAtIndex:0];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

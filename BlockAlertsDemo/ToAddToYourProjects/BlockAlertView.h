@@ -4,12 +4,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BlockAlertDataStructure.h"
 
 @interface BlockAlertView : NSObject {
 @protected
     UIView *_view;
     NSMutableArray *_blocks;
     CGFloat _height;
+    NSMutableArray *sharedAlertViews;
 }
 
 + (BlockAlertView *)alertWithTitle:(NSString *)title message:(NSString *)message;

@@ -26,6 +26,8 @@
 {
     BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Alert Title" message:@"This is a very long message, designed just to show you how smart this class is"];
     
+    [sharedAlertViews addObject:alert];
+        
     [alert setCancelButtonWithTitle:@"Cancel" block:nil];
     [alert setDestructiveButtonWithTitle:@"Kill!" block:nil];
     [alert addButtonWithTitle:@"Show Action Sheet on top" block:^{
@@ -35,6 +37,33 @@
         [self showAlert:nil];
     }];
     [alert show];
+}
+
+- (IBAction)showAlertsInOrder:(id)sender
+{
+    
+    BlockAlertView *firstAlert = [BlockAlertView alertWithTitle:@"First Alert" message:@"First Alert"];
+    
+    [sharedAlertViews addObject:firstAlert];
+    
+    [firstAlert setDestructiveButtonWithTitle:@"Ok" block:nil];
+    [firstAlert setCancelButtonWithTitle:@"Cancel" block:nil];
+    [firstAlert show];
+    
+    BlockAlertView *secondAlert = [BlockAlertView alertWithTitle:@"Second Alert" message:@"Second Alert"];
+    
+    [sharedAlertViews addObject:secondAlert];
+    
+    [secondAlert setDestructiveButtonWithTitle:@"OK" block:nil];
+    [secondAlert show];
+    
+    BlockAlertView *thirdAlert = [BlockAlertView alertWithTitle:@"Third Alert" message:@"Third Alert"];
+    
+    [sharedAlertViews addObject:thirdAlert];
+    
+    [thirdAlert setDestructiveButtonWithTitle:@"OK" block:nil];
+    [thirdAlert show];
+
 }
 
 - (IBAction)showActionSheet:(id)sender
@@ -124,6 +153,12 @@
 {
     [testKeyboard release];
     [super dealloc];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    sharedAlertViews = [[BlockAlertDataStructure sharedBlockAlertDataStructure] alertViews];
 }
 
 - (void)viewDidUnload
