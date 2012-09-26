@@ -26,7 +26,7 @@
 {
     BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Alert Title" message:@"This is a very long message, designed just to show you how smart this class is"];
     
-    [sharedAlertViews addObject:alert];
+    //[sharedAlertViews addObject:alert];
         
     [alert setCancelButtonWithTitle:@"Cancel" block:nil];
     [alert setDestructiveButtonWithTitle:@"Kill!" block:nil];
@@ -44,7 +44,7 @@
     
     BlockAlertView *firstAlert = [BlockAlertView alertWithTitle:@"First Alert" message:@"First Alert"];
     
-    [sharedAlertViews addObject:firstAlert];
+    //[sharedAlertViews addObject:firstAlert];
     
     [firstAlert setDestructiveButtonWithTitle:@"Ok" block:nil];
     [firstAlert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -52,14 +52,14 @@
     
     BlockAlertView *secondAlert = [BlockAlertView alertWithTitle:@"Second Alert" message:@"Second Alert"];
     
-    [sharedAlertViews addObject:secondAlert];
+    //[sharedAlertViews addObject:secondAlert];
     
     [secondAlert setDestructiveButtonWithTitle:@"OK" block:nil];
     [secondAlert show];
     
     BlockAlertView *thirdAlert = [BlockAlertView alertWithTitle:@"Third Alert" message:@"Third Alert"];
     
-    [sharedAlertViews addObject:thirdAlert];
+    //[sharedAlertViews addObject:thirdAlert];
     
     [thirdAlert setDestructiveButtonWithTitle:@"OK" block:nil];
     [thirdAlert show];

@@ -101,7 +101,7 @@ static UIFont *buttonFont = nil;
         
         _vignetteBackground = NO;
     }
-    
+    [sharedAlertViews addObject:self]; //append
     return self;
 }
 
