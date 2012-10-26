@@ -55,7 +55,7 @@ static UIFont *buttonFont = nil;
         
         _view = [[UIView alloc] initWithFrame:frame];
         _blocks = [[NSMutableArray alloc] init];
-        _height = kAlertViewBorder + 6;
+        _height = kAlertViewBottomBorder + 6;
 
         if (title)
         {
@@ -76,7 +76,7 @@ static UIFont *buttonFont = nil;
             [_view addSubview:labelView];
             [labelView release];
             
-            _height += size.height + kAlertViewBorder;
+            _height += size.height + kAlertViewBottomBorder;
         }
         
         if (message)
@@ -98,7 +98,7 @@ static UIFont *buttonFont = nil;
             [_view addSubview:labelView];
             [labelView release];
             
-            _height += size.height + kAlertViewBorder;
+            _height += size.height + kAlertViewBottomBorder;
         }
         
         _vignetteBackground = NO;
@@ -284,7 +284,7 @@ static UIFont *buttonFont = nil;
         [_view addSubview:button];
         
         if (!isSecondButton)
-            _height += kAlertButtonHeight + kAlertViewBorder;
+            _height += kAlertButtonHeight + kAlertViewBottomBorder;
         
         index++;
     }

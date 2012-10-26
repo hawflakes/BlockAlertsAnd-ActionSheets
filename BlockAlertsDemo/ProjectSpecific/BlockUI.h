@@ -31,7 +31,10 @@
 // Alert View constants
 
 #define kAlertViewBounce         20
-#define kAlertViewBorder         10
+//#define kAlertViewBorder         10
+#define kAlertViewBorder         12
+#define kAlertViewBottomBorder   4
+
 #define kAlertButtonHeight       44
 
 #define kAlertViewTitleFont             [UIFont boldSystemFontOfSize:20]
@@ -56,7 +59,8 @@
 
 //#define kAlertViewButtonShadowColor     [UIColor blackColor]
 #define kAlertViewButtonShadowColor     [UIColor grayColor]
-#define kAlertViewButtonShadowOffset    CGSizeMake(0, -1)
+//#define kAlertViewButtonShadowOffset    CGSizeMake(0, -1)
+#define kAlertViewButtonShadowOffset    CGSizeMake(0, 0)
 
 #define kAlertViewBackground              @"dialog_background_white"
 //#define kAlertViewBackground            @"alert-window.png"
