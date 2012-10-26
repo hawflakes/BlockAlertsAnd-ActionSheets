@@ -22,6 +22,9 @@
 - (void)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block;
 - (void)addButtonWithTitle:(NSString *)title block:(void (^)())block;
 
+- (void)addSecondaryButtonWithTitle:(NSString *)title block:(void (^)())block;
+- (void)addPrimaryButtonWithTitle:(NSString *)title block:(void (^)())block;
+
 - (void)show;
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
 

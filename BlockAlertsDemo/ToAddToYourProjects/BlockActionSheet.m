@@ -105,7 +105,7 @@ static UIFont *buttonFont = nil;
     }
 }
 
-- (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)())block
+- (void)addPrimaryButtonWithTitle:(NSString *)title block:(void (^)())block
 {
     [self addButtonWithTitle:title color:@"red" block:block atIndex:-1];
 }
@@ -120,7 +120,7 @@ static UIFont *buttonFont = nil;
     [self addButtonWithTitle:title color:@"gray" block:block atIndex:-1];
 }
 
-- (void)setDestructiveButtonWithTitle:(NSString *)title atIndex:(NSInteger)index block:(void (^)())block
+- (void)addPrimaryButtonWithTitle:(NSString *)title atIndex:(NSInteger)index block:(void (^)())block
 {
     [self addButtonWithTitle:title color:@"red" block:block atIndex:index];
 }

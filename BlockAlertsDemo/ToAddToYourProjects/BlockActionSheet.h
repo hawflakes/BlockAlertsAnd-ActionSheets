@@ -23,11 +23,11 @@
 - (id)initWithTitle:(NSString *)title;
 
 - (void)setCancelButtonWithTitle:(NSString *) title block:(void (^)()) block;
-- (void)setDestructiveButtonWithTitle:(NSString *) title block:(void (^)()) block;
+- (void)addPrimaryButtonWithTitle:(NSString *) title block:(void (^)()) block;
 - (void)addButtonWithTitle:(NSString *) title block:(void (^)()) block;
 
 - (void)setCancelButtonWithTitle:(NSString *) title atIndex:(NSInteger)index block:(void (^)()) block;
-- (void)setDestructiveButtonWithTitle:(NSString *) title atIndex:(NSInteger)index block:(void (^)()) block;
+- (void)addPrimaryButtonWithTitle:(NSString *) title atIndex:(NSInteger)index block:(void (^)()) block;
 - (void)addButtonWithTitle:(NSString *) title atIndex:(NSInteger)index block:(void (^)()) block;
 
 - (void)showInView:(UIView *)view;

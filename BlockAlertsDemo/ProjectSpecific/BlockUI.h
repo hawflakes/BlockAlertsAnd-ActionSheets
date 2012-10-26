@@ -35,21 +35,31 @@
 #define kAlertButtonHeight       44
 
 #define kAlertViewTitleFont             [UIFont boldSystemFontOfSize:20]
-#define kAlertViewTitleTextColor        [UIColor colorWithWhite:244.0/255.0 alpha:1.0]
-#define kAlertViewTitleShadowColor      [UIColor blackColor]
-#define kAlertViewTitleShadowOffset     CGSizeMake(0, -1)
+//#define kAlertViewTitleTextColor        [UIColor colorWithWhite:244.0/255.0 alpha:1.0]
+#define kAlertViewTitleTextColor        [UIColor blackColor]
+
+#define kAlertViewTitleShadowColor      [UIColor grayColor]
+//#define kAlertViewTitleShadowOffset     CGSizeMake(0, -1)
+#define kAlertViewTitleShadowOffset     CGSizeMake(0,0)
 
 #define kAlertViewMessageFont           [UIFont systemFontOfSize:18]
-#define kAlertViewMessageTextColor      [UIColor colorWithWhite:244.0/255.0 alpha:1.0]
-#define kAlertViewMessageShadowColor    [UIColor blackColor]
-#define kAlertViewMessageShadowOffset   CGSizeMake(0, -1)
+//#define kAlertViewMessageTextColor      [UIColor colorWithWhite:244.0/255.0 alpha:1.0]
+#define kAlertViewMessageTextColor      [UIColor blackColor]
+//#define kAlertViewMessageShadowColor    [UIColor blackColor]
+#define kAlertViewMessageShadowColor    [UIColor grayColor]
+//#define kAlertViewMessageShadowOffset   CGSizeMake(0, -1)
+#define kAlertViewMessageShadowOffset   CGSizeMake(0, 0)
 
 #define kAlertViewButtonFont            [UIFont boldSystemFontOfSize:18]
 #define kAlertViewButtonTextColor       [UIColor whiteColor]
-#define kAlertViewButtonShadowColor     [UIColor blackColor]
+#define kAlertViewDarkButtonTextColor   [UIColor blackColor]
+
+//#define kAlertViewButtonShadowColor     [UIColor blackColor]
+#define kAlertViewButtonShadowColor     [UIColor grayColor]
 #define kAlertViewButtonShadowOffset    CGSizeMake(0, -1)
 
-#define kAlertViewBackground            @"alert-window.png"
+#define kAlertViewBackground              @"dialog_background_white"
+//#define kAlertViewBackground            @"alert-window.png"
 #define kAlertViewBackgroundCapHeight   38
 
 #endif

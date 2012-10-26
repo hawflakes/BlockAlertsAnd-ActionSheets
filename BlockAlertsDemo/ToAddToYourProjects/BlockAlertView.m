@@ -25,7 +25,9 @@ static UIFont *buttonFont = nil;
     if (self == [BlockAlertView class])
     {
         background = [UIImage imageNamed:kAlertViewBackground];
-        background = [[background stretchableImageWithLeftCapWidth:0 topCapHeight:kAlertViewBackgroundCapHeight] retain];
+        //background = [[background stretchableImageWithLeftCapWidth:0 topCapHeight:kAlertViewBackgroundCapHeight] retain];
+        background = [[background resizableImageWithCapInsets:UIEdgeInsetsMake(17.0, 17.0, 17.0, 17.0)] retain];
+
         titleFont = [kAlertViewTitleFont retain];
         messageFont = [kAlertViewMessageFont retain];
         buttonFont = [kAlertViewButtonFont retain];
@@ -140,6 +142,19 @@ static UIFont *buttonFont = nil;
     [self addButtonWithTitle:title color:@"red" block:block];
 }
 
+
+- (void)addSecondaryButtonWithTitle:(NSString *)title block:(void (^)())block
+{
+    [self addButtonWithTitle:title color:@"white" block:block];
+    
+}
+
+- (void)addPrimaryButtonWithTitle:(NSString *)title block:(void (^)())block
+{
+    [self addButtonWithTitle:title color:@"yellow" block:block];
+}
+
+
 -(void)show 
 {
     if (sharedAlertViews.count == 1)
@@ -156,8 +171,28 @@ static UIFont *buttonFont = nil;
         NSString *title = [block objectAtIndex:1];
         NSString *color = [block objectAtIndex:2];
 
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"alert-%@-button.png", color]];
-        image = [image stretchableImageWithLeftCapWidth:(int)(image.size.width+1)>>1 topCapHeight:0];
+        BOOL newButton = NO;
+        BOOL whiteButton = YES;
+        
+        if ([color isEqualToString:@"white"])
+        {
+            newButton = YES;
+            whiteButton = YES;
+        } else if ([color isEqualToString:@"yellow"])
+        {
+            newButton = YES;
+        } //FIXFIX: not using the new red ones.
+        
+        UIImage * image = nil;
+        
+        if (newButton)
+        {
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"btn_%@_dialog_default", color]];
+            image = [image stretchableImageWithLeftCapWidth:(int)(image.size.width+1)>>1 topCapHeight:0];            
+        } else {
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"alert-%@-button.png", color]];
+            image = [image stretchableImageWithLeftCapWidth:(int)(image.size.width+1)>>1 topCapHeight:0];
+        }
         
         CGFloat maxHalfWidth = floorf((_view.bounds.size.width-kAlertViewBorder*3)*0.5);
         CGFloat width = _view.bounds.size.width-kAlertViewBorder*2;
@@ -224,9 +259,24 @@ static UIFont *buttonFont = nil;
         button.tag = i+1;
         
         [button setBackgroundImage:image forState:UIControlStateNormal];
-        [button setTitleColor:kAlertViewButtonTextColor forState:UIControlStateNormal];
+        
+        if (newButton && whiteButton) {
+            [button setTitleColor:kAlertViewDarkButtonTextColor forState:UIControlStateNormal];
+        } else {
+            [button setTitleColor:kAlertViewButtonTextColor forState:UIControlStateNormal];
+        }
+        
         [button setTitleShadowColor:kAlertViewButtonShadowColor forState:UIControlStateNormal];
         [button setTitle:title forState:UIControlStateNormal];
+        
+        
+        if (newButton)
+        {
+            UIImage * newPressedImage = [UIImage imageNamed:[NSString stringWithFormat:@"btn_%@_dialog_pressed", color]];
+            newPressedImage = [newPressedImage stretchableImageWithLeftCapWidth:(int)(newPressedImage.size.width+1)>>1 topCapHeight:0];
+            [button setBackgroundImage:newPressedImage forState:UIControlStateHighlighted];
+        }
+        
         button.accessibilityLabel = title;
         
         [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
