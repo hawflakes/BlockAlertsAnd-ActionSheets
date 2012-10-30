@@ -11,8 +11,10 @@
 @interface BlockBackground : UIWindow {
 @private
     UIWindow *_previousKeyWindow;
+    NSMutableArray * _alertQueue;
 }
 
++ (NSMutableArray *) alertQueue;
 + (BlockBackground *) sharedInstance;
 
 - (void)addToMainWindow:(UIView *)view;

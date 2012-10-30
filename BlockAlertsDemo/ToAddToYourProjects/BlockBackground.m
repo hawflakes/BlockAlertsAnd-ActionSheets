@@ -42,6 +42,11 @@ static BlockBackground *_sharedInstance = nil;
     return nil;
 }
 
++ (NSMutableArray *) alertQueue
+{
+    return [BlockBackground sharedInstance]->_alertQueue;
+}
+
 - (id)copyWithZone:(NSZone*)zone
 {
     return self;
@@ -77,6 +82,8 @@ static BlockBackground *_sharedInstance = nil;
         self.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.9f];
 
         self.vignetteBackground = NO;
+        
+        _alertQueue = [[NSMutableArray alloc] initWithCapacity:3];
     }
     return self;
 }

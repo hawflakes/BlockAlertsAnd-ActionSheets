@@ -101,9 +101,9 @@ static UIFont *buttonFont = nil;
             _height += size.height + kAlertViewBottomBorder;
         }
         
+        _baseHeight = _height;
         _vignetteBackground = NO;
     }
-    [sharedAlertViews addObject:self]; //append
     return self;
 }
 
@@ -157,8 +157,22 @@ static UIFont *buttonFont = nil;
 
 -(void)show 
 {
+    [sharedAlertViews addObject:self]; //append
+
     if (sharedAlertViews.count == 1)
         [self process];
+}
+
+- (void) reset
+{
+    _height = _baseHeight;
+    for (UIView * sv in _view.subviews)
+    {
+        if (![sv isKindOfClass:[UILabel class]]) {
+            [sv removeFromSuperview];
+        }
+    }
+
 }
 
 - (void)process
@@ -383,10 +397,14 @@ static UIFont *buttonFont = nil;
                                                   [[BlockBackground sharedInstance] reduceAlphaIfEmpty];
                                               } 
                                               completion:^(BOOL finished) {
+                                                  [sharedAlertViews removeObjectAtIndex:0];
+
                                                   [[BlockBackground sharedInstance] removeView:_view];
-                                                  [_view release]; _view = nil;
+                                                  //[_view release];
+                                                  //_view = nil;
+                                                  [self reset];
                                                   [self autorelease];
-                                                  if (sharedAlertViews.count >= 1) 
+                                                  if (sharedAlertViews.count >= 1)
                                                   {
                                                       BlockAlertView *alert = [sharedAlertViews objectAtIndex:0];
                                                       [alert process];
@@ -396,18 +414,28 @@ static UIFont *buttonFont = nil;
     }
     else
     {
+        
+        [sharedAlertViews removeObjectAtIndex:0];
+
         [[BlockBackground sharedInstance] removeView:_view];
-        [_view release]; _view = nil;
+        //[_view release];
+        //_view = nil;
+        [self reset];
+
         [self autorelease];
+        if (sharedAlertViews.count >= 1)
+        {
+            BlockAlertView *alert = [sharedAlertViews objectAtIndex:0];
+            [alert process];
+        }
+
     }
-    
-    [sharedAlertViews removeObjectAtIndex:0];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Action
 
-- (void)buttonClicked:(id)sender 
+- (void)buttonClicked:(id)sender
 {
     /* Run the button's block */
     int buttonIndex = [sender tag] - 1;

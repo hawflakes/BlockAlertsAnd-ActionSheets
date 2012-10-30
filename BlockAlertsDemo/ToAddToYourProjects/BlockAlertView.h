@@ -11,6 +11,7 @@
     UIView *_view;
     NSMutableArray *_blocks;
     CGFloat _height;
+    CGFloat _baseHeight; //need this when re-showing an alert.
     NSMutableArray *sharedAlertViews;
 }
 
